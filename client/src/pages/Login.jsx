@@ -13,6 +13,8 @@ const Login = () => {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         email,
         password,
+      }, {
+        withCredentials: true // Ensure credentials are sent if needed
       });
 
       localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -32,24 +34,22 @@ const Login = () => {
     <div>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-      <input
-  type="email"
-  placeholder="Email"
-  value={email}
-  required
-  autoComplete="email"
-  onChange={(e) => setEmail(e.target.value)}
-/>
-
-<input
-  type="password"
-  placeholder="Password"
-  value={password}
-  required
-  autoComplete="current-password"
-  onChange={(e) => setPassword(e.target.value)}
-/>
-
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          required
+          autoComplete="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          required
+          autoComplete="current-password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Login</button>
       </form>
       <p>

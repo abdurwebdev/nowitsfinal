@@ -15,6 +15,8 @@ const Register = () => {
         email,
         password,
         isAdmin,
+      }, {
+        withCredentials: true // Ensure credentials are sent if needed
       });
       alert("Registered successfully! Please log in.");
       navigate("/login");
@@ -27,24 +29,22 @@ const Register = () => {
     <div>
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
-      <input
-  type="email"
-  placeholder="Email"
-  value={email}
-  required
-  autoComplete="email"
-  onChange={(e) => setEmail(e.target.value)}
-/>
-
-<input
-  type="password"
-  placeholder="Password"
-  value={password}
-  required
-  autoComplete="new-password"
-  onChange={(e) => setPassword(e.target.value)}
-/>
-
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          required
+          autoComplete="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          required
+          autoComplete="new-password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <label>
           <input
             type="checkbox"
