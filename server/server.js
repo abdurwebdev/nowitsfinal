@@ -2,6 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const allowedOrigins = ["https://nowitsfinal-6qhe.vercel.app"];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 
 const authRoutes = require("./routes/auth");
 
