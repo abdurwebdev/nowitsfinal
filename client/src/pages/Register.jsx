@@ -5,20 +5,21 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); // Prevent page reload
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         email,
         password,
+        isAdmin,
       });
-      alert("Registration successful");
+      alert("Registered successfully! Please log in.");
       navigate("/login");
     } catch (err) {
-      console.error(err);
-      alert("Registration failed");
+      alert(err.response?.data?.message || "Registration failed.");
     }
   };
 
@@ -28,19 +29,27 @@ const Register = () => {
       <form onSubmit={handleRegister}>
         <input
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          value={email}
           required
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          value={password}
           required
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Registessdsdr</button>
+        <label>
+          <input
+            type="checkbox"
+            checked={isAdmin}
+            onChange={(e) => setIsAdmin(e.target.checked)}
+          />
+          Register as Admin
+        </label>
+        <button type="submit">Register</button>
       </form>
     </div>
   );
