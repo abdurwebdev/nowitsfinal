@@ -32,20 +32,24 @@ const Login = () => {
     <div>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <input
+  type="email"
+  placeholder="Email"
+  value={email}
+  required
+  autoComplete="email"
+  onChange={(e) => setEmail(e.target.value)}
+/>
+
+<input
+  type="password"
+  placeholder="Password"
+  value={password}
+  required
+  autoComplete="current-password"
+  onChange={(e) => setPassword(e.target.value)}
+/>
+
         <button type="submit">Login</button>
       </form>
       <p>

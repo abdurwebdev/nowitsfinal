@@ -27,20 +27,24 @@ const Register = () => {
     <div>
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <input
+  type="email"
+  placeholder="Email"
+  value={email}
+  required
+  autoComplete="email"
+  onChange={(e) => setEmail(e.target.value)}
+/>
+
+<input
+  type="password"
+  placeholder="Password"
+  value={password}
+  required
+  autoComplete="new-password"
+  onChange={(e) => setPassword(e.target.value)}
+/>
+
         <label>
           <input
             type="checkbox"
