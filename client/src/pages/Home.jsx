@@ -1,19 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ReactPlayer from "react-player";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [videos, setVideos] = useState([]);
 
-  const logout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/videos`).then(res => setVideos(res.data));
+  }, []);
 
   return (
     <div>
-      <h1>Welcome, {user?.email}!</h1>
-      <p>This is the Home Page</p>
-      <button onClick={logout}>Logout</button>
+      <h2>All Videos</h2>
+      {videos.map(video => (
+        <div key={video._id}>
+          <h3>{video.title}</h3>
+          <ReactPlayer url={video.videoUrl} controls width="100%" />
+        </div>
+      ))}
     </div>
   );
 };
