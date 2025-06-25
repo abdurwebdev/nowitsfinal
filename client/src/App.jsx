@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
+import Videos from "./pages/Videos";
+
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -17,6 +19,7 @@ const App = () => {
           path="/admin"
           element={user?.isAdmin ? <AdminDashboard /> : <Navigate to="/" />}
         />
+        <Route path="/videos" element={<Videos />} />
       </Routes>
     </BrowserRouter>
   );

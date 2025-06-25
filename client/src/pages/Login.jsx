@@ -23,7 +23,7 @@ const Login = () => {
       if (res.data.user.isAdmin) {
         navigate("/admin");
       } else {
-        navigate("/");
+        navigate("/videos");
       }
     } catch (err) {
       alert("Login failed. Please check your credentials.");
